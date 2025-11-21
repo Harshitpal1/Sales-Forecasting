@@ -100,9 +100,9 @@ class SalesDataPreprocessor:
             print(missing_counts[missing_counts > 0])
         
         if strategy == 'forward_fill':
-            df_copy = df_copy.fillna(method='ffill')
+            df_copy = df_copy.ffill()
         elif strategy == 'backward_fill':
-            df_copy = df_copy.fillna(method='bfill')
+            df_copy = df_copy.bfill()
         elif strategy == 'interpolate':
             numeric_cols = df_copy.select_dtypes(include=[np.number]).columns
             df_copy[numeric_cols] = df_copy[numeric_cols].interpolate(method='linear')
@@ -200,7 +200,7 @@ class SalesDataPreprocessor:
         df_copy['Day'] = df_copy[date_column].dt.day
         df_copy['DayOfWeek'] = df_copy[date_column].dt.dayofweek  # Monday=0, Sunday=6
         df_copy['DayOfYear'] = df_copy[date_column].dt.dayofyear
-        df_copy['WeekOfYear'] = df_copy[date_column].dt.isocalendar().week
+        df_copy['WeekOfYear'] = df_copy[date_column].dt.isocalendar().week.astype(int)
         df_copy['Quarter'] = df_copy[date_column].dt.quarter
         
         # Weekend flag

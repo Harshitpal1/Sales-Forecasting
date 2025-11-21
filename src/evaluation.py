@@ -24,7 +24,10 @@ import warnings
 warnings.filterwarnings('ignore')
 
 # Set style for better-looking plots
-plt.style.use('seaborn-v0_8-darkgrid')
+try:
+    plt.style.use('seaborn-v0_8-darkgrid')
+except OSError:
+    plt.style.use('seaborn-v0_8')
 sns.set_palette("husl")
 
 

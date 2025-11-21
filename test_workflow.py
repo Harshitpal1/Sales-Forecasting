@@ -12,14 +12,11 @@ This script demonstrates the complete pipeline:
 import numpy as np
 import pandas as pd
 import os
-import sys
 
-# Add src to path
-sys.path.insert(0, os.path.join(os.path.dirname(__file__), 'src'))
-
-from data_preprocessing import SalesDataPreprocessor, create_sample_data
-from models import SalesForecaster
-from evaluation import ModelEvaluator
+# Import from src package
+from src.data_preprocessing import SalesDataPreprocessor, create_sample_data
+from src.models import SalesForecaster
+from src.evaluation import ModelEvaluator
 
 def main():
     print("="*70)
