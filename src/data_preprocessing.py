@@ -427,6 +427,10 @@ class SalesDataPreprocessor:
             print("\n6. Creating rolling features...")
             df = self.create_rolling_features(df, target_column)
         
+        # Step 7: Encode categorical features
+        print(f"\n{7 if target_column else 5}. Encoding categorical features...")
+        df = self.encode_categorical_features(df)
+        
         print("\n" + "="*50)
         print("Preprocessing Pipeline Complete")
         print(f"Final shape: {df.shape}")
